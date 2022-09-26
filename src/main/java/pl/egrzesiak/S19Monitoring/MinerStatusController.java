@@ -7,20 +7,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MinerStatusController {
 
-    @GetMapping("/status")
+    @GetMapping("/data")
     public MinerStatus MinerStatusController(
             @RequestParam(value = "ip", defaultValue = "192.168.1.1") String ip,
             @RequestParam(value = "port", defaultValue = "4028") String port) {
         int[] array = {60,60,60};
-        MinerStatus minerStatus = new MinerStatus(
-                ip,
-                "MyMiner1",
-                "S19j",
-                array,
-                105.1F,
-                "1h",
-                "OK");
-
+        MinerStatus minerStatus = new MinerStatus(ip, port);
+        minerStatus.getData();
         return minerStatus;
     }
 }

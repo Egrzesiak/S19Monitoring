@@ -8,15 +8,18 @@ public class MinerStatus {
     private final float hashrate5s;
     private final String uptime;
     private final String status;
+    private CgminerAPI cgminerAPI;
+    private String port;
 
-    public MinerStatus(String ip, String worker, String model, int[] chipTemp, float hashrate5s, String uptime, String status) {
+    public MinerStatus(String ip, String port) {
         this.ip = ip;
-        this.worker = worker;
-        this.model = model;
-        this.chipTemp = chipTemp;
-        this.hashrate5s = hashrate5s;
-        this.uptime = uptime;
-        this.status = status;
+        this.port = port;
+        this.worker = "";
+        this.model = "";
+        this.chipTemp = new int[]{0, 0, 0};
+        this.hashrate5s = 0.0F;
+        this.uptime = "";
+        this.status = "";
     }
 
     public String getIp() {
@@ -43,7 +46,18 @@ public class MinerStatus {
         return uptime;
     }
 
-    public String getStatus() {
+    public String getData() {
+        cgminerAPI = new CgminerAPI(this.ip, this.port);
+        try {
+            cgminerAPI.getData();
+        }
+        catch(Exception ex){
+            System.out.println(ex.toString());
+            System.out.println(cgminerAPI.getErrorString());
+            return cgminerAPI.getErrorString();
+        }
+        System.out.println(cgminerAPI.getErrorString());
+        System.out.println("Test: Data");
         return status;
     }
 }

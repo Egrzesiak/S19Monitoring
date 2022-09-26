@@ -16,6 +16,6 @@ public class S19MonitoringApplication {
 		String ip = "127.0.0.1";
 		String port = "4028";
 
-		cgminerAPI = new CgminerAPI(command, ip, port);
+		//cgminerAPI = new CgminerAPI(command, ip, port);
 	}
 }
