@@ -11,9 +11,6 @@ public class MinerStatusController {
     public MinerStatus MinerStatusController(
             @RequestParam(value = "ip", defaultValue = "192.168.1.1") String ip,
             @RequestParam(value = "port", defaultValue = "4028") String port) {
-        int[] array = {60,60,60};
-        MinerStatus minerStatus = new MinerStatus(ip, port);
-        minerStatus.getData();
-        return minerStatus;
+        return new MinerStatus(ip, port);
     }
 }
